@@ -7,7 +7,7 @@ import com.pi4j.io.gpio.RaspiPin;
 public class FreqTest {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("<--Pi4J--> GPIO Control Example ... started.");
-
+        int delayBetween = 20;
         // create gpio controller
         final GpioController gpio = GpioFactory.getInstance();
 
@@ -22,13 +22,13 @@ public class FreqTest {
             pin.high();
             System.out.println("--> GPIO state should change --> TRY: " + i);
 
-            Thread.sleep(200);
+            Thread.sleep(delayBetween);
 
             // turn off gpio pin #01
             pin.low();
             System.out.println("--> GPIO state should change --> TRY: " + i);
 
-            Thread.sleep(200);
+            Thread.sleep(delayBetween);
 
 
         }
