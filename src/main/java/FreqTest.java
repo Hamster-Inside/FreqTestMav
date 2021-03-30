@@ -49,7 +49,7 @@ public class FreqTest {
 
 
         System.out.println("MCP23017 Example");
-        I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
+        I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_0);
         I2CDevice device = i2c.getDevice(MCP23017_ADDRESS);
 
         device.write(IODIRA_REGISTER, (byte) 0x00);
@@ -59,10 +59,11 @@ public class FreqTest {
 
         while(true){
 
-            System.out.println(device.read(GPIOB_REGISTER));
-            Thread.sleep(2000);
+            System.out.println(device.read(GPIOA_REGISTER));
+            Thread.sleep(200);
             device.write(GPIOA_REGISTER, (byte) 0x00);
-            Thread.sleep(2000);
+            System.out.println(device.read(GPIOA_REGISTER));
+            Thread.sleep(200);
             device.write(GPIOA_REGISTER, (byte) 0xFF);
         }
     }
