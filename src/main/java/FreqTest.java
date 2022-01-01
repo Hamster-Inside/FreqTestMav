@@ -23,6 +23,7 @@ public class FreqTest {
     public static void main(String[] args) throws InterruptedException, I2CFactory.UnsupportedBusNumberException, IOException {
 
         //   gpioTest();
+        //CameraTest.run();
         I2CTest();
     }
 
@@ -50,20 +51,19 @@ public class FreqTest {
 
         System.out.println("MCP23017 Example");
         I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_0);
-        I2CDevice device = i2c.getDevice(MCP23017_ADDRESS);
+        I2CDevice device = i2c.getDevice(0x21);  //0x20-0x27 address 0-7
 
         device.write(IODIRA_REGISTER, (byte) 0x00);
-
         device.write(IODIRB_REGISTER, (byte) 0xFF);
         device.write(GPPUB_REGISTER, (byte) 0xFF);
 
         while(true){
 
-            System.out.println(device.read(GPIOA_REGISTER));
-            Thread.sleep(200);
+           // System.out.println(device.read(GPIOA_REGISTER));
+            Thread.sleep(1000);
             device.write(GPIOA_REGISTER, (byte) 0x00);
-            System.out.println(device.read(GPIOA_REGISTER));
-            Thread.sleep(200);
+           // System.out.println(device.read(GPIOA_REGISTER));
+            Thread.sleep(1000);
             device.write(GPIOA_REGISTER, (byte) 0xFF);
         }
     }
